@@ -52,7 +52,7 @@ function Sidebar({ active, onSelect, collapsed, onCollapse }: { active: string; 
     <div className="brand"><div className="brand-mark"><span>N</span></div>{!collapsed && <div><strong>NEXUS <b>ALM</b></strong><small>ENGINEERING CLOUD</small></div>}<button className="icon-btn sidebar-collapse" aria-label="Collapse navigation" onClick={onCollapse}><PanelLeftClose size={16}/></button></div>
     <div className="workspace-switch"><div className="workspace-icon">AC</div>{!collapsed && <><div className="workspace-copy"><strong>Acme Corporation</strong><small>Engineering workspace</small></div><ChevronDown size={14}/></>}</div>
     <nav aria-label="Main navigation" className="nav-list">{sections.map(section => <div className="nav-section" key={section.title}><div className="nav-heading">{!collapsed ? section.title : "···"}</div>{section.items.map(item => <button key={item.label} title={collapsed ? item.label : undefined} className={`nav-item ${active === item.label ? "active" : ""}`} onClick={() => onSelect(item.label)}><item.icon size={16}/>{!collapsed && <span>{item.label}</span>}{!collapsed && item.label === "Notifications" && <i className="nav-dot"/>}{!collapsed && item.label === "Verification Center" && <em>3</em>}</button>)}</div>)}</nav>
-    <div className="sidebar-bottom"><button className="nav-item"><CircleHelp size={16}/>{!collapsed && <span>Help center</span>}</button><button className="nav-item"><Settings2 size={16}/>{!collapsed && <span>Workspace settings</span>}</button><div className="profile-mini"><div className="avatar">AS</div>{!collapsed && <div><strong>Arun Singh</strong><small>Workspace admin</small></div>}{!collapsed && <MoreHorizontal size={16}/>}</div></div>
+    <div className="sidebar-bottom"><button className="nav-item" onClick={() => onSelect("Help center")}><CircleHelp size={16}/>{!collapsed && <span>Help center</span>}</button><button className="nav-item" onClick={() => onSelect("Settings")}><Settings2 size={16}/>{!collapsed && <span>Workspace settings</span>}</button><div className="profile-mini"><div className="avatar">AS</div>{!collapsed && <div><strong>Arun Singh</strong><small>Workspace admin</small></div>}{!collapsed && <MoreHorizontal size={16}/>}</div></div>
   </aside>
 }
 
@@ -121,7 +121,7 @@ function Modal({title,onClose,children}:{title:string;onClose:()=>void;children:
 
 export default function NexusApp() {
  const [section,setSection]=useState("Dashboard"),[collapsed,setCollapsed]=useState(false),[dark,setDark]=useState(false),[modal,setModal]=useState(false),[projectName,setProjectName]=useState(""),[created,setCreated]=useState<string[]>([]),[toast,setToast]=useState("")
- const select=(value:string)=>{setSection(value);window.scrollTo({top:0,behavior:"smooth"})}
+ const select=(value:string)=>{setSection(value);document.querySelector(".content-shell")?.scrollTo({top:0,behavior:"smooth"})}
  const showToast=(message:string)=>{setToast(message);window.setTimeout(()=>setToast(""),3200)}
  const [progress,setProgress]=useState(false)
  const startVerification=()=>{setProgress(true);showToast("Verification started in demo mode — no code was executed.");window.setTimeout(()=>setProgress(false),4500)}
