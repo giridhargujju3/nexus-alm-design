@@ -3,8 +3,8 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'NEXUS ALM | Engineering Workspace',
-  description: 'AI-powered application lifecycle management for software teams.',
+  title: 'NEXUS ALM | Software Delivery Lifecycle Management',
+  description: 'Manage the software delivery lifecycle from requirements and architecture through verification, release, and operations.',
   generator: 'v0.app',
   icons: {
     icon: [
